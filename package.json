@@ -8,6 +8,8 @@
   },
   "author": "Scotch",
   "dependencies": {
+    "angular": "^1.5.8",
+    "bootstrap": "^3.3.7",
     "cheerio": "latest",
     "express": "latest",
     "jquery": "^3.1.0",

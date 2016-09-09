@@ -2,28 +2,103 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>Knotty-Web-Health</title>
-
-  <script> var $ = require("jquery");</script>
-  <script src="./scraper.js"></script>
+    <meta charset="UTF-8">
+    <title>Knotty-Web-Health</title>
+    <script>
+        var $ = require("jquery");
+        var jQuery = $;
+    </script>
+    <script src="./scraper.js"></script>
+    <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="./includes/app.js"></script>
+    <style>
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+            top: 100%;
+            left: 50%;
+            margin-left: -60px;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+    </style>
 </head>
 
-<body>
-  <!--
-  <h1>Hello World!</h1>
-   All of the Node.js APIs are available in this renderer process. 
-  We are using node <script>document.write(process.versions.node)</script>, Chromium <script>document.write(process.versions.chrome)</script>,
-  and Electron <script>document.write(process.versions.electron)</script>.
-  -->
-  <input type="button" value="scraper" onclick="scraper.scrape()" /><br>
-  <div id="results"></div>
+<body ng-app="knotty" ng-controller="tabController as tabs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="nav nav-tabs">
+                    <li ng-class="{active: tabs.tab=='a'}"><a href="#" ng-click="tabs.tab = tabs.tab=='a'? null: 'a'">Urls</a></li>
+                    <li ng-class="{active: tabs.tab=='b'}"><a href="#" ng-click="tabs.tab = tabs.tab=='b'? null: 'b'">Exceptions</a></li>
+                    <li ng-class="{active: tabs.tab=='c'}"><a href="#" ng-click="tabs.tab = tabs.tab=='c'? null: 'c'">Contacts</a></li>
+                    <li ng-class="{active: tabs.tab=='d'}"><a href="#" ng-click="tabs.tab = tabs.tab=='d'? null: 'd'">Settings</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row" ng-show="tabs.tab == 'a'">
+                    <div class="col-lg-12">
+                        <div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">Name</div>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">Url</div>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>isCollection: <input type="checkbox" value="isCollection" data-toggle="tooltip" data-placement="bottom" title="Does the specified url contain multiple links to verify?!" /></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
 
+                    </div>
+                </div>
+                <div class="row" ng-show="tabs.tab == 'b'">
+                    <div class="col-lg-12">b</div>
+                </div>
+                <div class="row" ng-show="tabs.tab == 'c'">
+                    <div class="col-lg-12">c</div>
+                </div>
+                <div class="row" ng-show="tabs.tab == 'd'">
+                    <div class="col-lg-12">d</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <input type="button" value="scraper" onclick="scraper.scrape();" /><br>
+                <div id="results"></div>
+            </div>
+        </div>
+    </div>
 </body>
-
-<script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
 
 </html>

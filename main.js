@@ -1,17 +1,4 @@
-
 const electron = require('electron');
-
-var dependencies = (function() {
-    var fs = require('fs');
-    var request = require('request');
-    var cheerio = require('cheerio');
-    return {
-        fs: fs,
-        request: request,
-        cheerio: cheerio,
-    };
-})();
-
 
 // Module to control application life.
 const app = electron.app;
